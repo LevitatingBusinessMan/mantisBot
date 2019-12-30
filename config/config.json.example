@@ -1,0 +1,8 @@
+{
+	"token": "",
+	"admins": [""],
+	"urls": ["readysteady.xyz/"],
+	"webhook": "",
+	"channels": [""],
+	"interval": "60000"
+}
