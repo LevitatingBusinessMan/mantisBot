@@ -55,6 +55,7 @@ function loop() {
 				}
 
 				else if (cached[url] != response) {
+					cached[url] = response
 
 					const timestamp = dayjs()
 					let filename = timestamp.toISOString()
