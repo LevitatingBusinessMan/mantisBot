@@ -38,7 +38,11 @@ config.urls.forEach(url => {
 function loop() {
 
 	config.urls.forEach(url => {
-		https.get(`https://${url}`, (res) => {
+		https.get(`https://${url}`, {
+			headers: {
+				"Cookie": "key=mantis%3AHCLAJMRF"
+			}
+		}, (res) => {
 
 			if (!statusCode[url])
 				statusCode[url] = res.statusCode
