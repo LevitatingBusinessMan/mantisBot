@@ -57,6 +57,9 @@ function loop() {
 						channel.send(`\`${url}\` Returned status ${res.statusCode}`).catch(console.error)
 					}
 				}
+
+				//We dont want to get a file posted each time a 500 error happens
+				return
 			}
 			
 			let response = ""
