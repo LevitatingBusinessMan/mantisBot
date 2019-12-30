@@ -1,5 +1,5 @@
 const Discord = require("discord.js"),
-Mantis = new Discord.Client(),
+Mantis = new Discord.Client({disableEveryone: false}),
 https = require("https"),
 fs = require("fs"),
 dayjs = require("dayjs"),
@@ -69,7 +69,7 @@ function loop() {
 						if (err) console.log(err)
 					})
 	
-					const DiscordMessage = `\`${url}\` has changed!`
+					const DiscordMessage = `${config.everyone ? "@everyone\n" : ""}\`${url}\` has changed!`
 	
 					for (let channelID of config.channels) {
 						const channel = Mantis.channels.get(channelID)
