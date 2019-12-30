@@ -40,25 +40,23 @@ function loop() {
 	config.urls.forEach(url => {
 		https.get(`https://${url}`, (res) => {
 
-			//dont post errors
-			if (res.statusCode != 200) {
-				if (statusCode[url] != res.statusCode) {
-					statusCode[url] = res.statusCode
-					
-					console.log(`[${dayjs().format("D-M HH-mm-ss")}] ${url} returned ${res.statusCode}`)
+			if (!statusCode[url])
+				statusCode[url] = res.statusCode
 
-					//Send message
-					for (let channelID of config.channels) {
-						const channel = Mantis.channels.get(channelID)
-						if (!channel) {
-							console.error(`Channel ${channelID} not found!`)
-						} else {
-							channel.send(`\`${url}\` Returned status ${res.statusCode}`).catch(console.error)
-						}
+			if (statusCode[url] != res.statusCode) {
+				statusCode[url] = res.statusCode
+				
+				console.log(`[${dayjs().format("D-M HH-mm-ss")}] ${url} returned ${res.statusCode}`)
+
+				//Send message
+				for (let channelID of config.channels) {
+					const channel = Mantis.channels.get(channelID)
+					if (!channel) {
+						console.error(`Channel ${channelID} not found!`)
+					} else {
+						channel.send(`\`${url}\` Returned status ${res.statusCode}`).catch(console.error)
 					}
 				}
-
-				return
 			}
 			
 			let response = ""
