@@ -89,7 +89,7 @@ function loop() {
 					let filepath = path.join(pagesDirPath, config.urls.indexOf(url).toString(), filename)
 
 					console.log(`[${timestamp.format("D-M HH-mm-ss")}] Change detected at ${url}`)
-					fs.writeFileSync(filepath, `<!-- ${url} -->\r\n` + response, err => {
+					fs.writeFileSync(filepath, `<!-- ${url} (MantisBot) -->\r\n` + response, err => {
 						if (err) console.log(err)
 					})
 	
